@@ -1,32 +1,22 @@
-cargo buildname: Rust CI
+name: Rust Build & Test
 
-    on:
-      push:
-        branches: [ "master", "main" ]
-      pull_request:
-        branches: [ "master", "main" ]
+on:
+  push:
+    branches: [ "master", "main" ]
+  pull_request:
+    branches: [ "master", "main" ]
 
-    env:
-      CARGO_TERM_COLOR: always
+env:
+  CARGO_TERM_COLOR: always
 
-    jobs:
-      build:
-        runs-on: ubuntu-latest
-
-        steps:
-        # 1. 下载代码
-        - uses: actions/checkout@v4
-
-        # 2. 尝试构建 (Build)
-        - name: Build
-          run: cargo build --verbose
-
-        # 3. 运行测试 (Test)
-        # 即使你还没写测试，这步运行也不会报错，它只会说 0 tests passed
-        - name: Run tests
-          run: cargo test --verbose
-
-        # 4. 检查代码格式 (Format Check)
-        # 这就是刚才报错的那一步，确保你 push 前运行过 cargo fmt
-        - name: Check formatting
-          run: cargo fmt --check
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build
+      run: cargo build --verbose
+    - name: Run tests
+      run: cargo test --verbose
+    - name: Check formatting
+      run: cargo fmt --check
