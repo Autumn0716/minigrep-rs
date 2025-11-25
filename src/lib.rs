@@ -102,8 +102,8 @@ impl Config {
                 use ignore::WalkState; //引入 WalkState 枚举
                 match result {
                     Ok(entry) => {
-                       // if entry.file_type().map_or(false, |ft| ft.is_file()) {
-                        if entry.file_type().is_some_and(|ft|ft.is_file()){
+                        // if entry.file_type().map_or(false, |ft| ft.is_file()) {
+                        if entry.file_type().is_some_and(|ft| ft.is_file()) {
                             //调用搜索,并且传入 stats_thread
 
                             search_file(
@@ -119,7 +119,7 @@ impl Config {
                     }
                     Err(_err) => {
                         //  eprintln!("Error reading entry:{}",err);
-                         WalkState::Continue
+                        WalkState::Continue
                     }
                 }
             })
