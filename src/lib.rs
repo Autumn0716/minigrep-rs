@@ -117,7 +117,6 @@ impl Config {
                         WalkState::Continue
                     }
                     Err(_err) => {
-                        
                         //  eprintln!("Error reading entry:{}",err);
                         WalkState::Continue
                     }
